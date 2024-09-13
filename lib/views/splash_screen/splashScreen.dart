@@ -1,39 +1,37 @@
-
-import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
-import 'package:sample_project/views/signin_screen/signin_screen.dart';
+import 'dart:async';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
   @override
-  SplashScreenState createState() => SplashScreenState();
+  // ignore: library_private_types_in_public_api
+  _SplashScreenState createState() => _SplashScreenState();
 }
 
-class SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends State<SplashScreen> {
   @override
-  // void initState() {
-  //   super.initState();
-
-  //   // Start the timer for 3 seconds
-  //   Timer(const Duration(seconds: 3), () {
-  //     // Navigate to the next screen (e.g., HomeScreen)
-  //     Navigator.pushReplacement(
-  //         context, MaterialPageRoute(builder: (context) => SignInScreen()));
-  //   });
-  // }
+  void initState() {
+    super.initState();
+    Timer(const Duration(seconds: 3), () {
+      // Navigate to the SignIn screen after the timer ends.
+      Navigator.of(context).pushReplacementNamed('/signin');
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white, // Optionally set a background color
       body: Center(
-        child: AnimatedSplashScreen(splash: Center(
-          child: Container(child: Lottie.asset("lib/assets/—Pngtree—school kids going to waving_14883039.png")),
-        ),nextScreen:SignInScreen() , 
-        splashIconSize: 100,
-        // duration: 3000,
-        )
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // Display the GIF
+            Image.asset('assets/Animation - 1725605642520.gif',  
+                height: 200, width: 200),
+          ],
+        ),
       ),
     );
   }

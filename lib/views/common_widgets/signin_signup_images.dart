@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../constants/imageurl.dart';
+import '../../constants/imageurl.dart';
 
 class SigninSignupImage extends StatelessWidget {
   const SigninSignupImage({

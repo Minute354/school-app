@@ -6,19 +6,22 @@ class Fields extends StatelessWidget {
   final String hintText;
   final bool obscureText;
   final Widget? icon;
+  final FormFieldValidator validator;
   const Fields({
     super.key,
     required this.controllers,
     required this.labelText,
     required this.hintText,
     required this.obscureText,
-     this.icon,
+    this.icon,
+    required this.validator,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       controller: controllers,
+      validator: validator,
       decoration: InputDecoration(
           labelText: labelText,
           hintText: hintText,

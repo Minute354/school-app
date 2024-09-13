@@ -1,20 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sample_project/views/home_screen/homeScreen.dart';
-import 'package:sample_project/views/signup_screen/signup_screen.dart';
 import 'package:sample_project/views/splash_screen/splashScreen.dart';
-import 'providers/auth_provider.dart';
-import 'views/signin_screen/signin_screen.dart';
+import 'providers/authProvider.dart';
+import 'providers/payment_providers.dart';
+import 'providers/student_providers.dart';
+import 'views/home_screen/homeScreen.dart';
+import 'views/authentication_screens/signin_screen/signin_screen.dart';
+import 'views/authentication_screens/signup_screen/signup_screen.dart';
 
 void main() {
-  runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => AuthProvider()),
-      ],
-      child: const MyApp(),
-    ),
-  );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -22,16 +17,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'School Management App',
-      initialRoute: '/splash',
-      routes: {
-        '/splash': (context) => const SplashScreen(),
-        '/signin': (context) => SignInScreen(),
-        '/signup': (context) => SignUpScreen(),
-        '/home': (context) => HomeScreen(),
-      },
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
+        // ChangeNotifierProvider(create: (_) => StudentProvider()),
+        // ChangeNotifierProvider(create: (_) => PaymentProvider()),
+      ],
+      child: MaterialApp(
+        title: 'School Management App',
+        theme: ThemeData(primarySwatch: Colors.blue),
+        initialRoute: '/splash',
+        routes: {
+          '/signin': (context) => SignInScreen(),
+          '/signup': (context) => SignUpScreen(),
+          '/home': (context) =>const HomeScreen(),
+          '/splash':(context)=>const SplashScreen(),
+        },
+      ),
     );
   }
 }
